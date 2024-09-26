@@ -46,6 +46,14 @@ pub struct Iban(ArrayString<IBAN_MAX_LENGTH>);
 #[derive(Clone, Copy, Eq, PartialEq, Hash)]
 pub struct Bban(ArrayString<IBAN_MAX_LENGTH>);
 
+/// Calling the function returns vector of supported country codes.
+pub fn get_supported_countries() -> Vec<&'static str> {
+    crate::COUNTRIES
+        .keys()
+        .copied()
+        .collect::<Vec<&'static str>>()
+}
+
 impl fmt::Debug for Iban {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
